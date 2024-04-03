@@ -1,0 +1,11 @@
+name: HybridServerMenu
+version: ${version}
+main: com.github.yyeerai.hybridservermenu.HybridServerMenu
+depend:
+  - HybridServerAPI
+api-version: 1.13
+commands:
+  hybridservermenu:
+    description: 菜单管理指令
+    usage: /hsm
+    aliases: [hsmenu, hsm]

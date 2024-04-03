@@ -1,0 +1,58 @@
+plugins {
+    id 'java'
+}
+
+group = 'com.github.yyeerai'
+version = '1.0.3-SNAPSHOT'
+
+java {
+    archivesBaseName = project.name
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(17)
+    }
+    sourceCompatibility = '1.8'
+    targetCompatibility = '1.8'
+}
+
+tasks.withType(JavaCompile).configureEach {
+    options.encoding = 'UTF-8'
+}
+
+
+repositories {
+    mavenCentral()
+    mavenLocal()
+    maven {
+        url = uri(project.property('mavenUrl'))
+        credentials {
+            username = project.property('mavenUsername')
+            password = project.property('mavenPassword')
+        }
+    }
+    maven { url 'https://oss.sonatype.org/content/repositories/snapshots' }
+    maven { url 'https://hub.spigotmc.org/nexus/content/repositories/snapshots/' }
+}
+
+
+dependencies {
+    implementation 'org.jetbrains:annotations:24.0.1'
+    compileOnly 'org.projectlombok:lombok:1.18.24'
+    annotationProcessor 'org.projectlombok:lombok:1.18.24'
+    implementation 'org.jetbrains:annotations:20.1.0'
+    compileOnly 'org.spigotmc:spigot-api:1.16.5-R0.1-SNAPSHOT'
+    compileOnly "com.github.yyeerai:PlaceholderAPI:2.11.5"
+    compileOnly "com.github.yyeerai:Vault:1.7.3"
+    compileOnly "com.github.yyeerai:PlayerPoints:3.2.6"
+    compileOnly "com.github.yyeerai:NyEconomy:1.6.+"
+    compileOnly "com.github.yyeerai:HybridServerAPI:1.0.+"
+    compileOnly "org.bstats:bstats-bukkit:3.0.1"
+}
+
+processResources {
+    setFilteringCharset("UTF-8")
+    eachFile {
+        if (it.file.name == "plugin.yml") {
+            expand(['version': version])
+        }
+    }
+}

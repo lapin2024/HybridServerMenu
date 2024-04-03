@@ -1,0 +1,97 @@
+# 菜单节点名称是忽略大小写的 😊 为菜单必须存在的项目 😒 为可选项目
+
+# 菜单的标题, 值为一个字符串 😊
+title: "&l<#084CFB>演示菜单" # 菜单的标题 (必须)
+
+# 菜单大小,值为整数,且为9的倍数,不能大于54 😊
+size: 36 # 菜单的大小 (必须是9的倍数)
+
+# 打开菜单的权限,值为字符串 😒
+permission: "example.permission.open"
+
+# 菜单开启的时候的声音, 值为键值对 😒
+openSound:
+  type: "minecraft:block.chest.open"
+  volume: 1
+  pitch: 1
+
+# 菜单关闭的时候的声音, 值为键值对 😒
+closeSound:
+  type: "minecraft:block.chest.close"
+  volume: 1
+  pitch: 1
+
+# 打开菜单的指令, 值为数组 😒
+openCommands:
+  - "cmd"
+
+# 打开菜单的物品, 值为键值对 😒
+openItem:
+  type: "WATCH"
+  name: "&6示例菜单"
+  lore:
+    - "&7右键点击打开"
+
+# 菜单按钮, 值为属性组 😒
+buttons:
+  ####################################################################################################################################################################################
+  BT1:
+    # 按钮位置 值为数组😊
+    SLOTS: [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 27, 28, 29, 30, 31, 32, 33, 34, 35 ]
+    #按钮的图标 值为键值对 😊
+    ICON:
+      type: "DIAMOND_BLOCK"
+      name: "&f<r:0.5:loop>欢迎使用混合服务器专用菜单"
+      lore:
+        - "&f&l&k<r:0.6:loop>================================"
+    # 查看按钮的需求 值为数组 😒
+    VIEW_REQUIREMENTS:
+      - 'hasPermission: example.permission'
+    # 按钮优先级 值为整数 😒
+    PRIORITY: 10
+    # 按钮刷新频率 值为整数 这里的值为游戏中的tick 😒
+    # REFRESHDELAY: 20
+    # 按钮按下的动作 值为属性组 😒
+    ACTION:
+      #动作类型 可选 default,left,right,middle,shift_left,shift_right 😊
+      default:
+        # 执行按钮action的需求 😒
+        requirements:
+        #- "hasPermission: example.permission" #表示需要有example.permission权限 (如果权限前面带!表示取反)
+        #- 'hasMoney: 100000'
+        #- 'hasPoints: 100'
+        #- 'hasItem: type:minecraft:wool, damage:1, amount:10, name:&a&l钻石, lore:[&7右键点击打开|&7点击给予玩家&a&l钻石], nbt:{tag:{ench:[{lvl:1s,id:16s},{lvl:1s,id:20s}]}}'
+        #- 'javaScript: player.hasPermission("example.permission");'
+        #- 'numberEquals: equal, 100, 1000' #比较两个数字 ,第一个参数表示对比类型,可选: equal,greater,less,greaterOrEqual,lessOrEqual,notEqual(相等,大于,小于,大于等于,小于等于,不等于),第二个参数表示要比较的数字,第三个参数表示被比较的数字
+        #- 'stringEquals: true, !abcd, abCD'
+        #- 'stringContains: 花朵, 我是祖国的花朵'
+        #- 'hasNyEconomy: 积分, 100'
+        #- 'hasEmptySlot: 1' #判断玩家背包是否有1个空位
+        # 满足需求执行的action 😒
+        actions:
+          #- 'giveMoney: 100'
+          #- 'givePoints: 100'
+          #- 'giveItem: type:minecraft:wool, damage:1, amount:10, name:&a&l钻石, lore:[&7右键点击打开|&7点击给予玩家&a&l钻石], nbt:{tag:{ench:[{lvl:1s,id:16s},{lvl:1s,id:20s}]}}'
+          #- "consoleCommands: [say 你好世界|say 第二条指令]"
+          #- "playerCommands: [say %player_name% &aHello World]"
+          - "closeMenu: true"
+          - "message: <r:0.9>这是一条彩虹信息 五颜六色的就是好看"
+          - "title: title:<r:0.9>Hello World, subtitle:<r:1.1>Welcome to the world, fadein:20, stay:80, fadeout:40"
+          #- 'giveNyEconomy: 积分, 100, <chance=0.8>'
+          #- "takeNyEconomy: 积分, 100"
+          #- 'takeMoney: 100, <delay=60>' #扣除100金币
+          #- 'takePoints: 20' #扣除20点券
+          #- "removeItem: type:minecraft:wool, damage:1, amount:10, name:&a&l钻石, lore:[&7右键点击打开|&7点击给予玩家&a&l钻石], nbt:{tag:{ench:[{lvl:1s,id:16s},{lvl:1s,id:20s}]}}"
+          #- 'javaScript: Bukkit.broadcastMessage("§4欢迎来到地球在线服务器!!!");'
+          #- 'server: server1' #连接到server1服务器
+          - "broadcast: <g:#F20D0D:#C129B8>欢迎来到地球在线服务器!!!, <chance=0.5>" #广播消息
+          #- "playSound: type:minecraft:ui.button.click, volume:1.0, pitch:1.0"
+          #- 'openMenu: 示例, hello'
+          #- "catchExecutor: text:&6请输入文字:, actions:{consoleCommands: [say %catchArg%]$playerCommands: [say %player_name% &aHello World]}"
+          #- 'sendJson: {"text":"<r:0.6>json可以五颜六色","clickEvent":{"action":"RUN_COMMAND","value":"/say HybridServerAPI"},"hoverEvent":{"action":"SHOW_TEXT","value":["<r:0.3>你好minecraft","<g:#084CFB:#ADF3FD:#E7185A:#5F85AB>这是指定渐变范围","&6再见!!!"]}}'
+          -  'sendJson: {"text":"<r:0.6>json可以五颜六色", "hoverEvent":{"action":"SHOW_TEXT","value":["<r:0.3>你好minecraft","<g:#084CFB:#ADF3FD:#E7185A:#5F85AB>这是指定渐变范围","&6再见!!!"]}}' #发送json消息
+        # 不满足需求执行的action 😒
+        denyActions:
+          - 'closeMenu: true'
+          - "message: 你没有权限"
+  ####################################################################################################################################################################################
