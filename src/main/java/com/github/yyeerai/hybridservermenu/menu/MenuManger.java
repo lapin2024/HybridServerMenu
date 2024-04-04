@@ -251,6 +251,9 @@ public class MenuManger {
 
     private Map<EnumClickType, List<ActionExecutor>> getDenyActionExecutorsMap(Section section) {
         Map<EnumClickType, List<ActionExecutor>> actionExecutorsMap = new HashMap<>();
+        if(!section.contains("action")){
+            return actionExecutorsMap;
+        }
         for (Object action : section.getSection("action").getKeys()) {
             EnumClickType.getClickTypeByName((String) action).ifPresent(enumClickType -> {
                 if (section.contains("action." + action + ".denyactions")) {
@@ -267,6 +270,9 @@ public class MenuManger {
 
     private Map<EnumClickType, List<ActionExecutor>> getAllowActionExecutorsMap(Section section) {
         Map<EnumClickType, List<ActionExecutor>> actionExecutorsMap = new HashMap<>();
+        if (!section.contains("action")) {
+            return actionExecutorsMap;
+        }
         for (Object action : section.getSection("action").getKeys()) {
             EnumClickType.getClickTypeByName((String) action).ifPresent(enumClickType -> {
                 if (section.contains("action." + action + ".actions")) {
@@ -284,6 +290,9 @@ public class MenuManger {
 
     public Map<EnumClickType, List<RequirementChecker>> getRequirementMap(Section section) {
         Map<EnumClickType, List<RequirementChecker>> requirementsMap = new HashMap<>();
+        if(!section.contains("action")){
+            return requirementsMap;
+        }
         for (Object action : section.getSection("action").getKeys()) {
             EnumClickType.getClickTypeByName((String) action).ifPresent(enumClickType -> {
                 List<RequirementChecker> requirementCheckers = new ArrayList<>();
