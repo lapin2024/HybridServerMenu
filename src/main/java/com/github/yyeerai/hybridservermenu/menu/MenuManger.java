@@ -90,7 +90,6 @@ public class MenuManger {
             count++;
         }
         HybridServerMenu.instance.getLogger().info("加载了" + count + "个菜单");
-        MenuApi.registerCommand(HybridServerMenu.instance);
         fileNameAndPath.clear();
         calculateAllFileNames(file);
     }
@@ -318,14 +317,12 @@ public class MenuManger {
     public void reloadAllMenu() {
         MenuApi.unregisterAll();
         loadAllMenu();
-        MenuApi.registerCommand(HybridServerMenu.instance);
     }
 
     public void reloadMenu(String menuName) {
         MenuApi.unregisterMenu(menuName);
         MenuCache menuCache = loadMenu(menuName, getPath(menuName));
         menuCache.registerHandler();
-        MenuApi.registerCommand(HybridServerMenu.instance);
     }
 
     public @Nullable MenuCache getMenuCache(String menuName) {
