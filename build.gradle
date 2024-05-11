@@ -3,7 +3,7 @@ plugins {
 }
 
 group = 'com.github.yyeerai'
-version = '1.0.4-SNAPSHOT'
+version = '1.0.5-SNAPSHOT'
 
 java {
     archivesBaseName = project.name
@@ -19,32 +19,17 @@ tasks.withType(JavaCompile).configureEach {
 }
 
 
-repositories {
-    mavenCentral()
-    mavenLocal()
-    maven {
-        url = uri(project.property('mavenUrl'))
-        credentials {
-            username = project.property('mavenUsername')
-            password = project.property('mavenPassword')
-        }
-    }
-    maven { url 'https://oss.sonatype.org/content/repositories/snapshots' }
-    maven { url 'https://hub.spigotmc.org/nexus/content/repositories/snapshots/' }
-}
-
-
 dependencies {
     implementation 'org.jetbrains:annotations:24.0.1'
     compileOnly 'org.projectlombok:lombok:1.18.24'
     annotationProcessor 'org.projectlombok:lombok:1.18.24'
     implementation 'org.jetbrains:annotations:20.1.0'
-    compileOnly 'org.spigotmc:spigot-api:1.16.5-R0.1-SNAPSHOT'
+    compileOnly "com.github.yyeerai:Spigot:1.16.5-build3096a"
     compileOnly "com.github.yyeerai:PlaceholderAPI:2.11.5"
     compileOnly "com.github.yyeerai:Vault:1.7.3"
     compileOnly "com.github.yyeerai:PlayerPoints:3.2.6"
     compileOnly "com.github.yyeerai:NyEconomy:1.6.+"
-    compileOnly "com.github.yyeerai:HybridServerAPI:1.0.+"
+    compileOnly "com.github.yyeerai:HybridServerAPI:1.+"
     compileOnly "org.bstats:bstats-bukkit:3.0.1"
 }
 

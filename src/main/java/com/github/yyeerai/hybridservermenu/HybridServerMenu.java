@@ -27,6 +27,7 @@ public class HybridServerMenu extends JavaPlugin {
             menu.setExecutor(new MangerCommand());
             menu.setTabCompleter(new MangerCommand());
         }
+        new Metrics(this, 21870);
         getLogger().info("混合服务器菜单插件已启用");
     }
 

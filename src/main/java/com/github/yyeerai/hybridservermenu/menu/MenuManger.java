@@ -349,9 +349,9 @@ public class MenuManger {
     private void convertToLowercase(YamlDocument config) {
         Map<String, Object> lowerCaseMap = new HashMap<>();
         for (String key : config.getRoutesAsStrings(true)) {
-            if (config.isSection(key)) {
-                continue;
-            }
+//            if (config.isSection(key)) {
+//                continue;
+//            }
             lowerCaseMap.put(key.toLowerCase(), config.get(key));
         }
         config.clear();
