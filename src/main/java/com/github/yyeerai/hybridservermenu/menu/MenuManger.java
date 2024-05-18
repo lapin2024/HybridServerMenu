@@ -18,6 +18,7 @@ import com.github.yyeerai.hybridserverapi.common.yaml.YamlDocument;
 import com.github.yyeerai.hybridserverapi.common.yaml.boostedyaml.block.implementation.Section;
 import com.github.yyeerai.hybridservermenu.HybridServerMenu;
 import lombok.Getter;
+import lombok.SneakyThrows;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
@@ -211,7 +212,9 @@ public class MenuManger {
             for (Object key : menuConfig.getConfig().getSection("buttons").getKeys()) {
                 Section section = menuConfig.getConfig().getSection("buttons." + key);
                 Button button = getButton(section);
-                buttons.add(button);
+                if (button != null){
+                    buttons.add(button);
+                }
             }
         }
         return buttons;
@@ -224,6 +227,12 @@ public class MenuManger {
      * @return 返回按钮对象
      */
     private Button getButton(Section section) {
+        for (Object key : section.getKeys()) {
+            System.out.println("节点 = " + key);
+        }
+        if(!section.contains("slots") || !section.contains("icon")){
+            return null;
+        }
         List<Integer> slots = section.getIntList("slots", new ArrayList<>()); //菜单槽位集合
         Map<String, Object> icon = section.getSection("icon").getStringRouteMappedValues(true); //菜单图标
         List<RequirementChecker> viewRequirement = new ArrayList<>(); //查看需求
@@ -250,7 +259,7 @@ public class MenuManger {
 
     private Map<EnumClickType, List<ActionExecutor>> getDenyActionExecutorsMap(Section section) {
         Map<EnumClickType, List<ActionExecutor>> actionExecutorsMap = new HashMap<>();
-        if(!section.contains("action")){
+        if (!section.contains("action")) {
             return actionExecutorsMap;
         }
         for (Object action : section.getSection("action").getKeys()) {
@@ -289,7 +298,7 @@ public class MenuManger {
 
     public Map<EnumClickType, List<RequirementChecker>> getRequirementMap(Section section) {
         Map<EnumClickType, List<RequirementChecker>> requirementsMap = new HashMap<>();
-        if(!section.contains("action")){
+        if (!section.contains("action")) {
             return requirementsMap;
         }
         for (Object action : section.getSection("action").getKeys()) {
@@ -346,15 +355,15 @@ public class MenuManger {
      *
      * @param config 配置文件
      */
+    @SneakyThrows
     private void convertToLowercase(YamlDocument config) {
         Map<String, Object> lowerCaseMap = new HashMap<>();
         for (String key : config.getRoutesAsStrings(true)) {
-//            if (config.isSection(key)) {
-//                continue;
-//            }
+            if (config.isSection(key)) {
+                continue;
+            }
             lowerCaseMap.put(key.toLowerCase(), config.get(key));
         }
-        config.clear();
         for (Map.Entry<String, Object> entry : lowerCaseMap.entrySet()) {
             config.set(entry.getKey(), entry.getValue());
         }
