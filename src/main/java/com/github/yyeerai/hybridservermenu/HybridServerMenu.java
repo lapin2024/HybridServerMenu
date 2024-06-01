@@ -20,7 +20,7 @@ public class HybridServerMenu extends JavaPlugin {
     @Override
     public void onEnable() {
         instance = this;
-        configManager = RegisterConfig.registerConfig(this, "config.yml", false);
+        configManager = RegisterConfig.registerConfig(this, "config.yml", ConfigManager.CreateType.RELEASE);
         menuManger = new MenuManger();
         PluginCommand menu = getCommand("hybridservermenu");
         if (menu != null) {

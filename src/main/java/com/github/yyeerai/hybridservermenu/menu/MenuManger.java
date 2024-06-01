@@ -14,9 +14,9 @@ import com.github.yyeerai.hybridserverapi.common.menu.sound.MenuSound;
 import com.github.yyeerai.hybridserverapi.common.serializeitem.ItemUtil;
 import com.github.yyeerai.hybridserverapi.common.yaml.ConfigManager;
 import com.github.yyeerai.hybridserverapi.common.yaml.RegisterConfig;
-import com.github.yyeerai.hybridserverapi.common.yaml.YamlDocument;
-import com.github.yyeerai.hybridserverapi.common.yaml.boostedyaml.block.implementation.Section;
 import com.github.yyeerai.hybridservermenu.HybridServerMenu;
+import dev.dejvokep.boostedyaml.YamlDocument;
+import dev.dejvokep.boostedyaml.block.implementation.Section;
 import lombok.Getter;
 import lombok.SneakyThrows;
 import org.bukkit.Bukkit;
@@ -227,9 +227,6 @@ public class MenuManger {
      * @return 返回按钮对象
      */
     private Button getButton(Section section) {
-        for (Object key : section.getKeys()) {
-            System.out.println("节点 = " + key);
-        }
         if(!section.contains("slots") || !section.contains("icon")){
             return null;
         }
